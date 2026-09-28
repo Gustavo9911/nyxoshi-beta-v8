@@ -10,35 +10,21 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CommunitiesRouteImport } from './routes/communities'
+import { Route as FounderSecurityRouteImport } from './routes/founder-security'
 import { Route as FoundersRouteImport } from './routes/founders'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as NotificationsRouteImport } from './routes/notifications'
-import { Route as CommunitiesRouteImport } from './routes/communities'
 import { Route as MessagesRouteImport } from './routes/messages'
+import { Route as NotificationsRouteImport } from './routes/notifications'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as PostPostIdRouteImport } from './routes/post.$postId'
 import { Route as UUsernameRouteImport } from './routes/u.$username'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
-const FoundersRoute = FoundersRouteImport.update({
-  id: '/founders',
-  path: '/founders',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NotificationsRoute = NotificationsRouteImport.update({
-  id: '/notifications',
-  path: '/notifications',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CommunitiesRoute = CommunitiesRouteImport.update({
@@ -46,9 +32,29 @@ const CommunitiesRoute = CommunitiesRouteImport.update({
   path: '/communities',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FounderSecurityRoute = FounderSecurityRouteImport.update({
+  id: '/founder-security',
+  path: '/founder-security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FoundersRoute = FoundersRouteImport.update({
+  id: '/founders',
+  path: '/founders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MessagesRoute = MessagesRouteImport.update({
   id: '/messages',
   path: '/messages',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SearchRoute = SearchRouteImport.update({
@@ -79,11 +85,12 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/communities': typeof CommunitiesRoute
+  '/founder-security': typeof FounderSecurityRoute
   '/founders': typeof FoundersRoute
   '/login': typeof LoginRoute
-  '/notifications': typeof NotificationsRoute
-  '/communities': typeof CommunitiesRoute
   '/messages': typeof MessagesRoute
+  '/notifications': typeof NotificationsRoute
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
   '/post/$postId': typeof PostPostIdRoute
@@ -92,11 +99,12 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/communities': typeof CommunitiesRoute
+  '/founder-security': typeof FounderSecurityRoute
   '/founders': typeof FoundersRoute
   '/login': typeof LoginRoute
-  '/notifications': typeof NotificationsRoute
-  '/communities': typeof CommunitiesRoute
   '/messages': typeof MessagesRoute
+  '/notifications': typeof NotificationsRoute
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
   '/post/$postId': typeof PostPostIdRoute
@@ -106,11 +114,12 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/communities': typeof CommunitiesRoute
+  '/founder-security': typeof FounderSecurityRoute
   '/founders': typeof FoundersRoute
   '/login': typeof LoginRoute
-  '/notifications': typeof NotificationsRoute
-  '/communities': typeof CommunitiesRoute
   '/messages': typeof MessagesRoute
+  '/notifications': typeof NotificationsRoute
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
   '/post/$postId': typeof PostPostIdRoute
@@ -121,11 +130,12 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/communities'
+    | '/founder-security'
     | '/founders'
     | '/login'
-    | '/notifications'
-    | '/communities'
     | '/messages'
+    | '/notifications'
     | '/search'
     | '/settings'
     | '/post/$postId'
@@ -134,11 +144,12 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/communities'
+    | '/founder-security'
     | '/founders'
     | '/login'
-    | '/notifications'
-    | '/communities'
     | '/messages'
+    | '/notifications'
     | '/search'
     | '/settings'
     | '/post/$postId'
@@ -147,11 +158,12 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/communities'
+    | '/founder-security'
     | '/founders'
     | '/login'
-    | '/notifications'
-    | '/communities'
     | '/messages'
+    | '/notifications'
     | '/search'
     | '/settings'
     | '/post/$postId'
@@ -161,13 +173,14 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  LoginRoute: typeof LoginRoute
-  NotificationsRoute: typeof NotificationsRoute
   CommunitiesRoute: typeof CommunitiesRoute
+  FounderSecurityRoute: typeof FounderSecurityRoute
+  FoundersRoute: typeof FoundersRoute
+  LoginRoute: typeof LoginRoute
   MessagesRoute: typeof MessagesRoute
+  NotificationsRoute: typeof NotificationsRoute
   SearchRoute: typeof SearchRoute
   SettingsRoute: typeof SettingsRoute
-  FoundersRoute: typeof FoundersRoute
   PostPostIdRoute: typeof PostPostIdRoute
   UUsernameRoute: typeof UUsernameRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
@@ -182,6 +195,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/communities': {
+      id: '/communities'
+      path: '/communities'
+      fullPath: '/communities'
+      preLoaderRoute: typeof CommunitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/founder-security': {
+      id: '/founder-security'
+      path: '/founder-security'
+      fullPath: '/founder-security'
+      preLoaderRoute: typeof FounderSecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/founders': {
       id: '/founders'
       path: '/founders'
@@ -194,13 +221,6 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/communities': {
-      id: '/communities'
-      path: '/communities'
-      fullPath: '/communities'
-      preLoaderRoute: typeof CommunitiesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/messages': {
@@ -257,11 +277,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CommunitiesRoute: CommunitiesRoute,
+  FounderSecurityRoute: FounderSecurityRoute,
   FoundersRoute: FoundersRoute,
   LoginRoute: LoginRoute,
-  NotificationsRoute: NotificationsRoute,
-  CommunitiesRoute: CommunitiesRoute,
   MessagesRoute: MessagesRoute,
+  NotificationsRoute: NotificationsRoute,
   SearchRoute: SearchRoute,
   SettingsRoute: SettingsRoute,
   PostPostIdRoute: PostPostIdRoute,
